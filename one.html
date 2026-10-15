@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123c2d">
+<title>FOODBRIDGE — The Food Loop</title>
+<style>
+:root{--green:#176b4d;--green-dark:#123c2d;--mint:#e9f6ed;--lime:#c7f36b;--cream:#fbfaf5;--ink:#17251e;--muted:#6b786f;--line:#e3e9e2;--orange:#f2a65a;--red:#d95545;--white:#fff;--shadow:0 18px 50px rgba(18,60,45,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.container{width:min(1160px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(251,250,245,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(227,233,226,.8)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.7px;font-size:1.2rem}.brand-mark{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;background:var(--green);color:white;font-size:1.25rem}.brand small{display:block;font-size:.68rem;letter-spacing:1.7px;color:var(--muted);font-weight:700;margin-top:1px}.nav-links{display:flex;gap:28px;align-items:center}.nav-links a{font-size:.9rem;color:#536157;text-decoration:none;font-weight:650}.nav-links a:hover{color:var(--green)}.btn{border:0;border-radius:12px;padding:12px 17px;font-weight:750;transition:.2s;display:inline-flex;justify-content:center;align-items:center;gap:8px;text-decoration:none}.btn-primary{background:var(--green);color:white}.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px)}.btn-lime{background:var(--lime);color:var(--green-dark)}.btn-outline{background:white;border:1px solid var(--line);color:var(--green)}.btn-sm{padding:9px 12px;font-size:.82rem;border-radius:10px}
+.hero{padding:68px 0 54px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--green);border:1px solid #d7eadb;border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:800;letter-spacing:.4px}.dot{height:8px;width:8px;border-radius:50%;background:#45a96f;box-shadow:0 0 0 4px #ccebd5}.hero h1{font-size:clamp(2.8rem,5.6vw,5.1rem);line-height:.99;letter-spacing:-4px;margin:22px 0 22px;max-width:680px}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);font-size:1.08rem;line-height:1.75;max-width:560px;margin:0 0 27px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-note{display:flex;align-items:center;gap:13px;margin-top:28px;color:var(--muted);font-size:.82rem}.avatars{display:flex}.avatars span{width:30px;height:30px;border:2px solid var(--cream);border-radius:50%;display:grid;place-items:center;margin-left:-7px;background:#e4c8a7;font-size:.9rem}.avatars span:first-child{margin-left:0;background:#d7e8d4}.avatars span:nth-child(2){background:#f4d7b7}.avatars span:nth-child(3){background:#d5d9f0}
+.hero-art{position:relative;min-height:410px;background:#e4f1e5;border-radius:36px;overflow:hidden;padding:30px;display:flex;align-items:center;justify-content:center}.sun{position:absolute;width:230px;height:230px;border-radius:50%;background:#c8e9a4;right:-40px;top:-55px}.plate{position:relative;z-index:1;width:min(340px,90%);aspect-ratio:1;border-radius:50%;background:#fffdf5;border:13px solid #f6f3e7;box-shadow:0 22px 55px #9ab6a066;display:grid;place-items:center;font-size:8.7rem;transform:rotate(-8deg)}.food-float{position:absolute;z-index:2;background:white;border:1px solid #e4ebe0;border-radius:17px;padding:14px 16px;box-shadow:var(--shadow);font-size:.83rem}.food-float strong{display:block;font-size:1rem;margin-bottom:3px}.food-float span{color:var(--muted)}.float-top{top:30px;left:20px}.float-bottom{bottom:27px;right:18px}.mini-icon{display:inline-grid;place-items:center;width:31px;height:31px;border-radius:10px;background:var(--mint);margin-right:7px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:5px auto 68px}.stat{padding:22px 24px;background:white;border:1px solid var(--line);border-radius:18px}.stat .icon{font-size:1.25rem}.stat strong{display:block;font-size:1.9rem;letter-spacing:-1px;margin:8px 0 3px}.stat span{color:var(--muted);font-size:.82rem}
+.section{padding:34px 0 76px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:26px}.section-kicker{font-size:.76rem;text-transform:uppercase;letter-spacing:1.8px;font-weight:850;color:var(--green)}h2{font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-1.8px;margin:8px 0 0;line-height:1.08}.section-sub{color:var(--muted);line-height:1.6;max-width:560px;margin:12px 0 0}.listing-tools{display:flex;gap:10px;align-items:center}.search{border:1px solid var(--line);background:white;border-radius:12px;padding:12px 14px;min-width:230px;outline:none}.search:focus,input:focus,select:focus,textarea:focus{border-color:#76b997;box-shadow:0 0 0 3px #dff2e6;outline:none}
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.food-card{background:white;border:1px solid var(--line);border-radius:21px;overflow:hidden;transition:.2s}.food-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.food-photo{height:158px;display:grid;place-items:center;font-size:4.3rem;position:relative;background:linear-gradient(135deg,#f0e9d8,#e4f0d9)}.food-card:nth-child(3n+2) .food-photo{background:linear-gradient(135deg,#f8e9d8,#f0d9c7)}.food-card:nth-child(3n+3) .food-photo{background:linear-gradient(135deg,#e3ebd9,#d7e8df)}.badge{position:absolute;top:13px;left:13px;padding:6px 9px;border-radius:8px;background:#fff;color:var(--green);font-size:.7rem;font-weight:850}.time-badge{position:absolute;top:13px;right:13px;background:#fff7e8;color:#99601b;padding:6px 9px;border-radius:8px;font-size:.7rem;font-weight:850}.card-body{padding:18px}.card-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.card-title h3{font-size:1.08rem;margin:0 0 5px;letter-spacing:-.3px}.card-title p{font-size:.81rem;color:var(--muted);margin:0}.servings{white-space:nowrap;background:var(--mint);color:var(--green);font-size:.74rem;font-weight:800;border-radius:9px;padding:7px 8px}.card-meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.78rem;margin:17px 0;padding-bottom:16px;border-bottom:1px solid var(--line)}.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.freshness{font-size:.76rem;color:var(--muted)}.freshness b{color:var(--green)}.empty{grid-column:1/-1;text-align:center;padding:45px 20px;color:var(--muted);background:white;border:1px dashed var(--line);border-radius:20px}
+.how{background:#f0f6ed;padding:70px 0}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}.step{background:white;border:1px solid #e2eadf;border-radius:20px;padding:25px}.step-num{width:42px;height:42px;border-radius:14px;background:var(--lime);display:grid;place-items:center;color:var(--green-dark);font-weight:900}.step h3{margin:19px 0 8px}.step p{color:var(--muted);font-size:.9rem;line-height:1.65;margin:0}.impact{padding:70px 0}.impact-box{background:var(--green-dark);border-radius:30px;color:white;padding:42px;display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center;overflow:hidden;position:relative}.impact-box:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #ffffff16;border-radius:50%;right:18%;top:-180px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff05}.impact-box h2{max-width:530px}.impact-box p{color:#c5d8cc;line-height:1.7;max-width:500px}.impact-numbers{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:13px}.impact-number{background:#ffffff0d;border:1px solid #ffffff20;border-radius:18px;padding:22px}.impact-number strong{font-size:2rem;display:block;color:var(--lime)}.impact-number span{font-size:.78rem;color:#c5d8cc}
+footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.footer-brand{color:var(--green-dark);font-weight:850}
+.modal-backdrop{position:fixed;inset:0;background:#10281f99;z-index:50;display:none;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:white;border-radius:23px;padding:27px;box-shadow:0 30px 90px #0003}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modal-head h2{font-size:1.6rem;letter-spacing:-.8px;margin:0}.close{border:0;background:#f0f4ef;border-radius:10px;width:36px;height:36px;font-size:1.2rem}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:.8rem;font-weight:800;color:#425348}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fcfdfa;border-radius:11px;padding:12px;color:var(--ink);outline:none}.field textarea{min-height:80px;resize:vertical}.map-preview{width:100%;height:210px;border:1px solid var(--line);border-radius:12px;background:#eef4ec;display:block}.map-help{font-size:.75rem;color:var(--muted);line-height:1.5;margin:7px 0 0}.map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}.toast{position:fixed;right:22px;bottom:22px;z-index:80;background:var(--green-dark);color:white;padding:15px 19px;border-radius:14px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.3s;max-width:calc(100% - 44px)}.toast.show{transform:translateY(0);opacity:1}.claimed{background:#f0f4ef;color:#758078}
+@media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:35px}.hero-art{min-height:350px}.stats{grid-template-columns:repeat(2,1fr)}.food-grid{grid-template-columns:repeat(2,1fr)}.impact-box{grid-template-columns:1fr}.nav-links{gap:14px}.nav-links a:not(.btn){display:none}}
+@media(max-width:560px){.container{width:min(100% - 28px,1160px)}.nav{height:67px}.brand{font-size:1rem}.nav .btn{padding:10px 12px;font-size:.8rem}.hero{padding:45px 0 35px}.hero h1{letter-spacing:-2.5px;font-size:3.25rem}.hero-art{min-height:300px;padding:15px;border-radius:25px}.plate{font-size:6rem;width:250px}.food-float{padding:10px 11px;font-size:.72rem}.float-top{left:10px;top:15px}.float-bottom{right:10px;bottom:15px}.stats{gap:9px;margin-bottom:45px}.stat{padding:16px}.stat strong{font-size:1.5rem}.section{padding-bottom:55px}.section-head{align-items:flex-start;flex-direction:column}.listing-tools{width:100%}.search{min-width:0;flex:1;width:100%}.food-grid{grid-template-columns:1fr}.food-photo{height:170px}.steps{grid-template-columns:1fr}.how,.impact{padding:50px 0}.impact-box{padding:27px 22px}.impact-numbers{gap:9px}.impact-number{padding:15px}.impact-number strong{font-size:1.6rem}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.modal{padding:21px}.hero-note{align-items:flex-start}.section h2{letter-spacing:-1px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="#" class="brand" style="text-decoration:none;color:inherit"><span class="brand-mark">↻</span><span>FoodBridge<small>THE FOOD LOOP</small></span></a>
+    <nav class="nav-links"><a href="#listings">Find food</a><a href="#how">How it works</a><a href="#impact">Our impact</a></nav>
+    <button class="btn btn-primary" id="openDonate">＋ Donate food</button>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> LESS WASTE. MORE GOOD.</div>
+      <h1>Good food<br>deserves a <span>second</span> chance.</h1>
+      <p>We connect restaurants, homes and local NGOs to get surplus food to the people who need it—before it goes to waste.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#listings">Explore available food ↗</a><button class="btn btn-lime" id="openDonate2">Share surplus food ＋</button></div>
+      <div class="hero-note"><div class="avatars"><span>🥗</span><span>🤝</span><span>🌱</span></div><span><strong style="color:var(--ink)">Every meal matters.</strong><br>Join your local food-rescue loop.</span></div>
+    </div>
+    <div class="hero-art" aria-label="Illustration of fresh food">
+      <div class="sun"></div><div class="plate">🥙</div>
+      <div class="food-float float-top"><strong><span class="mini-icon">♻️</span>Food rescued</strong><span>One pickup at a time</span></div>
+      <div class="food-float float-bottom"><strong>⏱ Freshness first</strong><span>Live time-to-pickup tracking</span></div>
+    </div>
+  </div>
+</section>
+<section class="container stats" aria-label="FoodBridge impact statistics">
+  <div class="stat"><span class="icon">🍱</span><strong id="statMeals">1,240</strong><span>Meals rescued</span></div>
+  <div class="stat"><span class="icon">⚖️</span><strong id="statKg">486 kg</strong><span>Food saved</span></div>
+  <div class="stat"><span class="icon">🤝</span><strong id="statPartners">28</strong><span>Community partners</span></div>
+  <div class="stat"><span class="icon">📍</span><strong id="statPickups">96</strong><span>Successful pickups</span></div>
+</section>
+<section class="section container" id="listings">
+  <div class="section-head"><div><div class="section-kicker">Rescue what's fresh</div><h2>Food near you</h2><p class="section-sub">Browse surplus food shared by local donors. Claim a listing to coordinate collection, then use Google Maps for pickup directions. Demo listings are examples and may not represent real-time availability.</p></div>
+  <div class="listing-tools"><input id="searchInput" class="search" type="search" placeholder="Search food or location…" aria-label="Search food or location"><button class="btn btn-outline" id="clearSearch">Clear</button></div></div>
+  <div class="food-grid" id="foodGrid"></div>
+</section>
+<section class="how" id="how">
+  <div class="container"><div class="section-kicker">Simple by design</div><h2>From surplus to shared.</h2><p class="section-sub">Three steps. One stronger community.</p>
+    <div class="steps">
+      <article class="step"><div class="step-num">01</div><h3>🥘 Donors share</h3><p>Restaurants, stores and households post available food, servings, pickup location and a safe collection window.</p></article>
+      <article class="step"><div class="step-num">02</div><h3>📍 NGOs claim</h3><p>Nearby volunteers and NGOs discover available listings, claim a donation and arrange a pickup time.</p></article>
+      <article class="step"><div class="step-num">03</div><h3>🌱 Impact grows</h3><p>Track the handoff and count rescued food to make the community's impact visible.</p></article>
+    </div>
+  </div>
+</section>
+<section class="impact container" id="impact">
+  <div class="impact-box"><div><div class="section-kicker" style="color:var(--lime)">Small actions. Real impact.</div><h2>Let's make food waste a thing of the past.</h2><p>FoodBridge helps redirect good food to underprivileged communities and care institutions, while supporting environmental sustainability and hunger alleviation.</p><button class="btn btn-lime" id="openDonate3">Start a food rescue ↗</button></div>
+    <div class="impact-numbers"><div class="impact-number"><strong id="impactKg">486 kg</strong><span>Food rescued</span></div><div class="impact-number"><strong id="impactMeals">1,240</strong><span>Meals supported</span></div><div class="impact-number"><strong>↓</strong><span>Less food waste</span></div><div class="impact-number"><strong>♥</strong><span>Stronger communities</span></div></div>
+  </div>
+</section>
+</main>
+<footer><div class="container footer-inner"><div><span class="footer-brand">↻ FoodBridge</span> · The Food Loop</div><div>Built for a more thoughtful food system. <span id="year"></span></div><div>Hackathon prototype · Demo data</div></div></footer>
+
+<div class="modal-backdrop" id="donateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal"><div class="modal-head"><h2 id="modalTitle">Share surplus food</h2><button class="close" id="closeModal" aria-label="Close">×</button></div>
+    <form id="donateForm"><div class="form-grid">
+      <div class="field full"><label for="foodName">Food name *</label><input id="foodName" name="foodName" required maxlength="70" placeholder="e.g. Fresh vegetable meals"></div>
+      <div class="field"><label for="category">Food category</label><select id="category" name="category"><option>Prepared meals</option><option>Bakery</option><option>Fruits & vegetables</option><option>Packaged food</option><option>Dairy</option><option>Other</option></select></div>
+      <div class="field"><label for="quantity">Quantity (kg) *</label><input id="quantity" name="quantity" type="number" min="0.1" max="10000" step="0.1" required placeholder="e.g. 8"></div>
+      <div class="field"><label for="servings">Estimated servings</label><input id="servings" name="servings" type="number" min="1" max="10000" value="20"></div>
+      <div class="field"><label for="freshHours">Safe pickup window *</label><select id="freshHours" name="freshHours" required><option value="1">Within 1 hour</option><option value="2" selected>Within 2 hours</option><option value="4">Within 4 hours</option><option value="6">Within 6 hours</option><option value="12">Within 12 hours</option><option value="24">Within 24 hours</option></select></div>
+      <div class="field full"><label for="location">Pickup location *</label><input id="location" name="location" required maxlength="100" placeholder="Area, landmark or address"><p class="map-help">Enter a full address or landmark. The map preview helps verify the pickup point.</p><iframe id="donationMap" class="map-preview" title="Donation pickup location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Hyderabad%2C%20India&t=&z=12&ie=UTF8&iwloc=&output=embed"></iframe><div class="map-actions"><a id="openLocationMap" class="btn btn-outline btn-sm" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></div></div>
+      <div class="field"><label for="donor">Donor / organization *</label><input id="donor" name="donor" required maxlength="70" placeholder="Your name or business"></div>
+      <div class="field"><label for="pickup">Preferred pickup time</label><input id="pickup" name="pickup" type="time"></div>
+      <div class="field full"><label for="notes">Notes (optional)</label><textarea id="notes" name="notes" maxlength="250" placeholder="Allergens, storage instructions, packaging…"></textarea></div>
+    </div><div class="form-actions"><button type="button" class="btn btn-outline" id="cancelModal">Cancel</button><button class="btn btn-primary" type="submit">Publish donation ↗</button></div></form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const initialListings = [
+ {id:1,name:"Fresh vegetable meal boxes",category:"Prepared meals",qty:12,servings:30,location:"Madhapur, Hyderabad",donor:"Green Leaf Kitchen",hours:1.7,created:Date.now()-18*60000,emoji:"🍱",pickup:"18:30",notes:"Packed meal boxes. Keep cool."},
+ {id:2,name:"Assorted bakery items",category:"Bakery",qty:6,servings:24,location:"Kondapur, Hyderabad",donor:"Daily Rise Bakery",hours:3.2,created:Date.now()-48*60000,emoji:"🥐",pickup:"19:00",notes:"Bread and pastries."},
+ {id:3,name:"Fresh fruit baskets",category:"Fruits & vegetables",qty:9,servings:18,location:"Gachibowli, Hyderabad",donor:"Sunshine Grocers",hours:5.5,created:Date.now()-30*60000,emoji:"🍎",pickup:"20:00",notes:"Seasonal fruit, sorted and packed."},
+ {id:4,name:"Community dinner surplus",category:"Prepared meals",qty:18,servings:45,location:"Kukatpally, Hyderabad",donor:"Annapurna Community Hall",hours:2.4,created:Date.now()-36*60000,emoji:"🍛",pickup:"18:45",notes:"Vegetarian meals; collect in reusable crates."},
+ {id:5,name:"Fresh sandwich packs",category:"Prepared meals",qty:4,servings:16,location:"Ameerpet, Hyderabad",donor:"Corner Cafe",hours:4.6,created:Date.now()-12*60000,emoji:"🥪",pickup:"19:15",notes:"Contains gluten."},
+ {id:6,name:"Seasonal vegetable boxes",category:"Fruits & vegetables",qty:15,servings:25,location:"Begumpet, Hyderabad",donor:"Farm Basket Store",hours:7,created:Date.now()-25*60000,emoji:"🥦",pickup:"20:30",notes:"Uncut produce."}
+];
+const KEY="foodbridge_listings_v1", CLAIMS="foodbridge_claims_v1", SAVED="foodbridge_saved_kg_v1";
+let listings;
+try { listings=JSON.parse(localStorage.getItem(KEY)) || initialListings; } catch(e) { listings=initialListings; }
+let claims; try {claims=JSON.parse(localStorage.getItem(CLAIMS))||{};}catch(e){claims={};}
+let savedKg=Number(localStorage.getItem(SAVED))||486;
+const $=id=>document.getElementById(id);
+$("year").textContent=new Date().getFullYear();
+function persist(){localStorage.setItem(KEY,JSON.stringify(listings));localStorage.setItem(CLAIMS,JSON.stringify(claims));localStorage.setItem(SAVED,String(savedKg));}
+function remaining(item){return Math.max(0,item.hours*3600000-(Date.now()-item.created));}
+function timeText(ms){if(ms<=0)return "Window ended";let m=Math.floor(ms/60000),h=Math.floor(m/60);return h?`${h}h ${m%60}m left`:`${m}m left`;}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function googleMapsSearchUrl(location){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(String(location||""));}
+function googleMapsDirectionsUrl(location){return "https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(String(location||""))+"&travelmode=driving";}
+function updateDonationMap(){
+ const location=$("location").value.trim()||"Hyderabad, India";
+ $("donationMap").src="https://maps.google.com/maps?q="+encodeURIComponent(location)+"&t=&z=14&ie=UTF8&iwloc=&output=embed";
+ $("openLocationMap").href=googleMapsSearchUrl(location);
+}
+function render(){
+ const q=$("searchInput").value.trim().toLowerCase();
+ const visible=listings.filter(x=>`${x.name} ${x.location} ${x.donor} ${x.category}`.toLowerCase().includes(q));
+ $("foodGrid").innerHTML=visible.length?visible.map(x=>{
+  const left=remaining(x),claimed=!!claims[x.id],expired=left<=0;
+  return `<article class="food-card"><div class="food-photo"><span>${escapeHtml(x.emoji||"🥗")}</span><span class="badge">${escapeHtml(x.category)}</span><span class="time-badge" style="${expired?'background:#fde8e5;color:#a63b30':''}">${expired?"Expired":`⏱ ${timeText(left)}`}</span></div><div class="card-body"><div class="card-title"><div><h3>${escapeHtml(x.name)}</h3><p>by ${escapeHtml(x.donor)}</p></div><span class="servings">${escapeHtml(x.qty)} kg</span></div><div class="card-meta"><span>📍 ${escapeHtml(x.location)}</span><span>🍽 ${escapeHtml(x.servings)} servings</span><span>🕒 Pickup ${escapeHtml(x.pickup||"To arrange")}</span></div><div class="map-actions" style="margin:-5px 0 14px"><a class="btn btn-outline btn-sm" href="${googleMapsDirectionsUrl(x.location)}" target="_blank" rel="noopener noreferrer">📍 Get pickup directions</a><a class="btn btn-outline btn-sm" href="${googleMapsSearchUrl(x.location)}" target="_blank" rel="noopener noreferrer">View map ↗</a></div>${x.notes?`<p style="font-size:.78rem;color:var(--muted);margin:0 0 14px;line-height:1.5">ℹ️ ${escapeHtml(x.notes)}</p>`:""}<div class="card-bottom"><span class="freshness">${expired?"Collection window ended":`Freshness: <b>${timeText(left)}</b>`}</span><button class="btn btn-sm ${claimed?'claimed':'btn-primary'}" ${claimed||expired?'disabled':''} onclick="claim(${x.id})">${claimed?"✓ Claimed":expired?"Unavailable":"Claim food →"}</button></div>${claimed?`<p style="font-size:.75rem;color:var(--green);margin:12px 0 0">Pickup claimed. Contact the donor listed above to confirm handoff.</p>`:""}</div></article>`;
+ }).join(""):`<div class="empty"><div style="font-size:2rem;margin-bottom:10px">🥬</div><strong>No food listings found</strong><p>Try another search, or share a new donation.</p><button class="btn btn-primary" onclick="openModal()">＋ Donate food</button></div>`;
+ updateStats();
+}
+function updateStats(){
+ const rescued=Object.keys(claims).filter(k=>claims[k]).reduce((sum,k)=>sum+(listings.find(x=>String(x.id)===String(k))?.qty||0),0);
+ $("statKg").textContent=`${Math.round(savedKg+rescued)} kg`; $("impactKg").textContent=`${Math.round(savedKg+rescued)} kg`;
+ const meals=1240+Math.round(rescued*2.5);$("statMeals").textContent=meals.toLocaleString("en-IN");$("impactMeals").textContent=meals.toLocaleString("en-IN");
+ $("statPickups").textContent=(96+Object.values(claims).filter(Boolean).length).toLocaleString("en-IN");
+}
+function claim(id){const item=listings.find(x=>x.id===id);if(!item||remaining(item)<=0)return toast("This pickup window has ended.");if(claims[id])return;claims[id]=true;persist();render();toast("Food claimed! Please coordinate pickup with the donor.");}
+function toast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>$("toast").classList.remove("show"),3500);}
+function openModal(){$("donateModal").classList.add("open");document.body.style.overflow="hidden";setTimeout(()=>$("foodName").focus(),50);}
+function closeModal(){$("donateModal").classList.remove("open");document.body.style.overflow="";}
+window.openModal=openModal;window.claim=claim;updateDonationMap();
+["openDonate","openDonate2","openDonate3"].forEach(id=>$(id).addEventListener("click",openModal));
+["closeModal","cancelModal"].forEach(id=>$(id).addEventListener("click",closeModal));
+$("donateModal").addEventListener("click",e=>{if(e.target===$("donateModal"))closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+$("searchInput").addEventListener("input",render);\nlet mapTimer; $("location").addEventListener("input",()=>{clearTimeout(mapTimer);mapTimer=setTimeout(updateDonationMap,450);});
+$("clearSearch").addEventListener("click",()=>{$("searchInput").value="";render();});
+$("donateForm").addEventListener("submit",e=>{
+ e.preventDefault();const f=new FormData(e.currentTarget);
+ const qty=Number(f.get("quantity")),hours=Number(f.get("freshHours"));
+ const emojis={"Prepared meals":"🍱","Bakery":"🥐","Fruits & vegetables":"🥦","Packaged food":"🥫","Dairy":"🥛","Other":"🥗"};
+ const item={id:Date.now(),name:f.get("foodName").trim(),category:f.get("category"),qty,servings:Number(f.get("servings"))||Math.max(1,Math.round(qty*2)),location:f.get("location").trim(),donor:f.get("donor").trim(),hours,created:Date.now(),emoji:emojis[f.get("category")],pickup:f.get("pickup")||"To arrange",notes:f.get("notes").trim()};
+ if(!item.name||!item.location||!item.donor||qty<=0){toast("Please complete all required fields.");return;}
+ listings.unshift(item);persist();e.currentTarget.reset();closeModal();$("searchInput").value="";render();$("listings").scrollIntoView({behavior:"smooth"});toast("Donation published! It's now visible in the food listings.");
+});
+setInterval(()=>{if(!$("donateModal").classList.contains("open"))render();},30000);
+render();
+</script>
+</body>
+</html>
